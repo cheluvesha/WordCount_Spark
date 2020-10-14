@@ -1,4 +1,4 @@
-import org.apache.spark.SparkContext
+import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.{DataFrame, SparkSession, functions}
 import org.apache.spark.sql.functions.explode
 import org.scalatest.FunSuite
@@ -13,7 +13,7 @@ class WordCountTest extends FunSuite {
     .master("local[*]")
     .getOrCreate()
   val sc: SparkContext = spark.sparkContext
-  val file = "./src/test/Resources/WordCount.txt"
+  val file = "hdfs://localhost:54310/WordCountSpark/WordCount.txt"
   val wrongFile = "./src/test/Resources/wrongFile.txt"
   val wrongFilePath = "/test/Resources/wrongFile.txt"
   val wordCount = new WordCount(spark,sc)
